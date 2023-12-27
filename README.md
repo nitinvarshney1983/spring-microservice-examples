@@ -10,8 +10,8 @@ This example is highly inspired by https://www.youtube.com/@Java.Brains Spring m
 
 ## Branch
 
-<b> chapter-1-microservice-using-discovery-server-and-client:
-</b>
+<h2> chapter-1-microservice-using-discovery-server-and-client:
+</h2>
 This branch contains:<br>
 <h3>techwhisky-Description-Server:</h3> 
 This is just a spring boot project enabled with Discovery server. <br>
@@ -46,6 +46,12 @@ A docker compose file has been given to run mongo and mysql instances on docker.
 
 <h3>Postman-Collections:</h3>
 Postman collection created to hit microservices of different components.
+
+<h2> chapter-2-microservices-fault-tolerance-resilience:
+</h2>
+In this branch we will implement circut breaker pattern to make our service fault-tolerant and resilience.
+
+Now a days Hy
 
 ## Note
 This repo is in development phase and can have broken code. Though i always try not to push a breaking code to it.
