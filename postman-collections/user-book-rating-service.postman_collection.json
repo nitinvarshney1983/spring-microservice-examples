@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "bcc2ff13-f588-419d-9673-3fc5264ed773",
+		"name": "user-book-rating-service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1636475"
+	},
+	"item": [
+		{
+			"name": "save user book rating",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\":\"nitinvarshneykiet@gmail.com\",\r\n    \"isbn\": \"1847941834\",\r\n    \"rating\": 3.5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/userbookrating",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"userbookrating"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get User rated Books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/userbookrating/user/nitinvarshneykiet@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"userbookrating",
+						"user",
+						"nitinvarshneykiet@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get books users rating",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/userbookrating/book/8194790859",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"userbookrating",
+						"book",
+						"8194790859"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

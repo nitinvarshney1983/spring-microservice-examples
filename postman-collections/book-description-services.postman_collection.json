@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "c0f5bd15-59fd-4fe2-bac5-9971ea319c63",
+		"name": "book-description-services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1636475"
+	},
+	"item": [
+		{
+			"name": "all books",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isbn\":\"1847941834\",\r\n    \"name\":\"Atomic Habits Paperback\",\r\n    \"description\":\"Transform your life with tiny changes in behaviour, starting now.People think that when you want to change your life, you need to think big. But world-renowned habits expert James Clear has discovered another way. He knows that real change comes from the compound effect of hundreds of small decisions: doing two push-ups a day, waking up five minutes early, or holding a single short phone call.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/books",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update book",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"isbn\":\"8194790859\",\r\n    \"name\":\"Everything I Never Told You\",\r\n    \"description\":\"We can live without religion, but we cannot survive without love. Roshan and Soha were not just class-mates and neighbours, but also best friends. They wanted to be together, but the world saw them as a Hindu and a Muslim before everything else. Roshan failed to convince his father and had to let Soha go. He married Manisha with the hope of moving on, and his life unfolded with a new definition of love. When Anuj was born, theirs was a happy family. Soha walked back into his life after Roshan lost Manisha to cancer. History repeats itself after years, but this time, Roshan decides to not give up. His resolve to convince his son brings him to a point where he will have to make a choice. Will Anuj be able to see someone else in place of his mother? Will Roshan be able to choose between Anuj and Soha? Will Soha be able to set herself free of a love she has nurtured all her life? Everything I Never Told You is a burning reminder that the heart knows no restrictions, and of the boundless power of love.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/books/{{bookIsbn}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books",
+						"{{bookIsbn}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get book by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/books/{{bookIsbn}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books",
+						"{{bookIsbn}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete book by id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/books/{{bookIsbn}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"books",
+						"{{bookIsbn}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

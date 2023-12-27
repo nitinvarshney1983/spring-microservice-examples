@@ -1,0 +1,30 @@
+{
+	"info": {
+		"_postman_id": "50573376-ce3b-457e-ba3b-22f1efa48df2",
+		"name": "Book-Details-Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1636475"
+	},
+	"item": [
+		{
+			"name": "get book details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/book-details/1847941834",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"book-details",
+						"1847941834"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
