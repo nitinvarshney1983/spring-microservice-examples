@@ -2,6 +2,8 @@ package com.techwhisky.book.details.configuration;
 
 import okhttp3.*;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
@@ -21,6 +23,8 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class AppConfiguration {
+
+    private static final Logger LOGGER= LoggerFactory.getLogger(AppConfiguration.class);
 
     @Value("${rest.client.connectionTimeout}")
     private int connectionTimeout;
@@ -80,10 +84,13 @@ public class AppConfiguration {
             @Override
             public Response intercept(@NotNull Chain chain) throws IOException {
                 Request request = chain.request();
+
                 Response response = chain.proceed(request);
-                while (!response.isSuccessful() && retriedCount < maxRetryCount) {
+                while ((!response.isSuccessful() || response.body().contentLength()==-1) && retriedCount < maxRetryCount) {
                     try {
+                        response.close();
                         TimeUnit.MILLISECONDS.sleep(retryAfterMilliseconds);
+                        LOGGER.info("Retried count value is--------------->"+retriedCount);
                         retriedCount++;
                         response=chain.proceed(request);
                     } catch (InterruptedException e) {

@@ -1,6 +1,8 @@
 package com.techwhisky.book.details.service.impl;
 
 import com.techwhisky.book.details.bean.*;
+import com.techwhisky.book.details.exception.ErrorBean;
+import com.techwhisky.book.details.exception.WebException;
 import com.techwhisky.book.details.service.BookDetailManager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -11,9 +13,11 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,12 +36,16 @@ public class BookDetailManagerImpl implements BookDetailManager {
     public BookDetails getBookDetailsWithRating(String isbn) {
 
         Book book = getBookDescription(isbn);
-        List<UserBookRating> userBookRatings = getUserBookRatings(isbn);
-        double avgRating=0;
-        if(!CollectionUtils.isEmpty(userBookRatings)){
-            avgRating=userBookRatings.stream().collect(Collectors.averagingDouble(UserBookRating::getRating));
+        if(book!=null){
+            List<UserBookRating> userBookRatings = getUserBookRatings(isbn);
+            double avgRating=0;
+            if(!CollectionUtils.isEmpty(userBookRatings)){
+                avgRating=userBookRatings.stream().collect(Collectors.averagingDouble(UserBookRating::getRating));
+            }
+            return getBookDetails(book, avgRating);
+        }else{
+            throw new RuntimeException("some error occurred while processing request");
         }
-        return getBookDetails(book, avgRating);
     }
 
     @NotNull
@@ -60,7 +68,11 @@ public class BookDetailManagerImpl implements BookDetailManager {
                 userBookRatings=ratingListResponseEntity.getBody().getUserBookRatings();
             }
         }catch(RestClientException restClientException){
-            restClientException.printStackTrace();
+            HttpClientErrorException exception=(HttpClientErrorException)restClientException;
+            ErrorBean errorBean=exception.getResponseBodyAs(ErrorBean.class);
+            if(errorBean!=null){
+                userBookRatings= Arrays.asList(new UserBookRating(null,null,0));
+            }
         }
         return userBookRatings;
     }
@@ -76,7 +88,8 @@ public class BookDetailManagerImpl implements BookDetailManager {
                 book=responseEntity.getBody();
             }
         }catch(RestClientException restClientException){
-            restClientException.printStackTrace();
+            HttpClientErrorException exception=(HttpClientErrorException)restClientException;
+            throw new WebException(exception.getResponseBodyAs(ErrorBean.class));
         }
         return book;
     }

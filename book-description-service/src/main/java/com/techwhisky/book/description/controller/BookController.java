@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/books")
@@ -29,8 +32,8 @@ public class BookController {
     }
 
     @GetMapping("/{isbn}")
-    public Book getBookByISBN(@PathVariable("isbn") String isbn){
-        return bookManager.getBookByISBN(isbn);
+    public Book getBookByISBN(@PathVariable("isbn") String isbn) throws InterruptedException {
+          return bookManager.getBookByISBN(isbn);
     }
 
     @PostMapping
