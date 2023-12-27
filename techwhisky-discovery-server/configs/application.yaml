@@ -1,0 +1,14 @@
+# here eureka server is running in standalone mode. Spring discovery server provide client side discovery.
+# client checks with discovery server for service end point and after getting actual url, client only hits that url
+# so there is a hop.
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
