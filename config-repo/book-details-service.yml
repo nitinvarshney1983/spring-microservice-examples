@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: book-details-service
+
+server:
+  port: 8083
+  servlet:
+    context-path: /book-details
+
+rest:
+  client:
+    connectionTimeout: 3000
+    readTimeout: 3000
+    connection:
+      pool:
+        maxIdleConnection: 50
+        keepAliveDuration: 20
+      maxRetryCount: 0 # will check spring retry so disabling it
+      retryAfterMilliseconds: 1000
+    sslVerification: false
+
+book:
+  description:
+    service:
+      endpoint: http://book-description-service/books
+
+user:
+  rating:
+    service:
+      endpoint: http://user-book-rating-service/userbookrating

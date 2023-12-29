@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: book-description-service
+
+server:
+  port: 8081
+
+mongodb:
+    host: localhost
+    port: 27017
+    uri:
+    database: microdb
+    authenticationDatabase: authDB
+    userName: nitin
+    password: nitin
+    tlsEnabled: false
+    readPreference: PRIMARY
+    writeConcern: ACKNOWLEDGED
+    readConcern: local
+    serverSelectionTimeout: 3500
+    connectionTimeout: 300000
+    readTimeout: 300000
