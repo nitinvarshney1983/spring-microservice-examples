@@ -10,4 +10,8 @@ spring:
         git:
           uri: https://github.com/nitinvarshney1983/config-repo.git
           skipSslValidation: true
-          default-label: master
+          default-label: master #if client do not define branch label
+  security:
+    user:
+      name: root #fixed user
+      password: s3cr3t # providing basic authentication. we can make it more complex. by default spring generate a password.
