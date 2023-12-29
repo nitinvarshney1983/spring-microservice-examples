@@ -2,7 +2,7 @@
 # client checks with discovery server for service end point and after getting actual url, client only hits that url
 # so there is a hop.
 server:
-  port: 8761
+  port: 8096
 
 eureka:
   instance:
